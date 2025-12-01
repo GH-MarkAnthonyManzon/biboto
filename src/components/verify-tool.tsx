@@ -1,15 +1,14 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { verifyCitationAction } from "@/app/actions";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal, CheckCircle } from "lucide-react";
+import { Terminal, CheckCircle, AlertCircle } from "lucide-react";
 import Link from "next/link";
-import { useToast } from "@/hooks/use-toast";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -23,17 +22,6 @@ function SubmitButton() {
 export function VerifyTool() {
   const initialState = { message: "", sources: [], error: "" };
   const [state, dispatch] = useActionState(verifyCitationAction, initialState);
-  const { toast } = useToast();
-
-  useEffect(() => {
-    if (state.error) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: state.error,
-      });
-    }
-  }, [state.error, toast]);
   
   return (
     <Card className="w-full max-w-2xl">
@@ -54,6 +42,16 @@ export function VerifyTool() {
           />
           <SubmitButton />
         </form>
+
+        {state.error && (
+            <Alert variant="destructive" className="mt-4">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>
+                {state.error}
+              </AlertDescription>
+            </Alert>
+        )}
 
         {state.message && !state.sources?.length && (
             <Alert className="mt-4">
