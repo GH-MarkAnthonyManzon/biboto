@@ -188,6 +188,56 @@ export const candidates: Candidate[] = [
         }
     ]
   },
+  {
+    id: 'gabriela-silang',
+    fullName: 'Gabriela Silang',
+    positionSought: 'Senator',
+    politicalAffiliation: 'Lakas ng Kababaihan',
+    imageUrlId: 'candidate-4',
+    education: [
+      {
+        degree: 'Bachelor of Science in Community Development',
+        institution: 'University of the Philippines Los Baños',
+        year: '2005',
+        source: { label: 'UPLB Registrar', url: '#' },
+      },
+    ],
+    careerTimeline: [
+      {
+        date: '2013-2022',
+        title: 'Party-list Representative',
+        description: 'Represented the women\'s sector, authoring bills on gender equality and rural development.',
+        isMilestone: true,
+        source: { label: 'Congress.gov.ph', url: '#' },
+      },
+      {
+        date: '2006-2012',
+        title: 'Community Organizer',
+        description: 'Worked with various NGOs focusing on women\'s rights and empowerment.',
+        isMilestone: false,
+        source: { label: 'NGO Network Records', url: '#' },
+      },
+    ],
+    platforms: [
+      {
+        title: 'Women\'s Economic Empowerment',
+        description: 'Pushes for laws that provide greater economic opportunities for women, including access to capital and training.',
+        source: { label: 'Campaign Website', url: '#' },
+      },
+    ],
+    controversies: [],
+    promises: [
+      {
+        promise: 'To establish a national hotline and support system for victims of domestic violence.',
+        relatedActions: [
+          {
+            description: 'Filed a bill in 2019 to create a national domestic violence support system, which reached a second reading.',
+            source: { label: 'House Bill No. 5432', url: '#' }
+          }
+        ]
+      }
+    ]
+  }
 ];
 
 export const literacyTopics = [
