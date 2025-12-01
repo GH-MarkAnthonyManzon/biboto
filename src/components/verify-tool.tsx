@@ -1,14 +1,14 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState, useEffect } from "react";
+import { useFormStatus } from "react-dom";
 import { verifyCitationAction } from "@/app/actions";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal, CheckCircle, XCircle } from "lucide-react";
+import { Terminal, CheckCircle } from "lucide-react";
 import Link from "next/link";
-import { useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 function SubmitButton() {
@@ -22,7 +22,7 @@ function SubmitButton() {
 
 export function VerifyTool() {
   const initialState = { message: "", sources: [], error: "" };
-  const [state, dispatch] = useFormState(verifyCitationAction, initialState);
+  const [state, dispatch] = useActionState(verifyCitationAction, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
