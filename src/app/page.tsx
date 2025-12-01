@@ -1,12 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { BookOpen, Users, Scale, FileCheck2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === "hero-1");
+  const heroImageUrl = "https://images.unsplash.com/photo-1564625432203-d3aa35318dc6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwaGlsaXBwaW5lcyUyMGZsYWd8ZW58MHx8fHwxNzY0NTkzMTM0fDA&ixlib=rb-4.1.0&q=80&w=1080";
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -14,13 +13,13 @@ export default function Home() {
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-              {heroImage && (
+              {heroImageUrl && (
                 <Image
                   alt="Hero"
                   className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
                   data-ai-hint="philippines politics"
                   height={600}
-                  src={heroImage.imageUrl}
+                  src={heroImageUrl}
                   width={600}
                 />
               )}

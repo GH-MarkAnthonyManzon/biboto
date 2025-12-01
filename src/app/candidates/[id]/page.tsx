@@ -1,7 +1,5 @@
 import { notFound } from "next/navigation";
 import { candidates } from "@/lib/data";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
-import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -22,6 +20,7 @@ import {
   CheckSquare,
   FileText,
   Link as LinkIcon,
+  User,
 } from "lucide-react";
 import { Timeline, TimelineItem } from "@/components/timeline";
 import Link from "next/link";
@@ -38,21 +37,11 @@ export default function CandidateProfilePage({
     notFound();
   }
 
-  const image = PlaceHolderImages.find((img) => img.id === candidate.imageUrlId);
-
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
       <header className="flex flex-col md:flex-row items-start gap-8 mb-12">
-        <div className="relative w-48 h-48 rounded-full overflow-hidden flex-shrink-0">
-          {image && (
-            <Image
-              src={image.imageUrl}
-              alt={`Portrait of ${candidate.fullName}`}
-              data-ai-hint={image.imageHint}
-              fill
-              className="object-cover"
-            />
-          )}
+        <div className="relative w-48 h-48 rounded-full overflow-hidden flex-shrink-0 flex items-center justify-center bg-muted">
+            <User className="w-32 h-32 text-muted-foreground" />
         </div>
         <div className="pt-4">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">
