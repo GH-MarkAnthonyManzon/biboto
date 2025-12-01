@@ -7,40 +7,10 @@
       "imageHint": "philippines flag"
     },
     {
-      "id": "candidate-1",
-      "description": "Placeholder for candidate Juan Dela Cruz",
-      "imageUrl": "https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWFsZSUyMHBvcnRyYWl0fGVufDB8fHx8MTc2NDU2NzE1OHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "male portrait"
-    },
-    {
-      "id": "candidate-2",
-      "description": "Placeholder for candidate Maria Clara",
-      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjQ1NjcxNTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "female portrait"
-    },
-    {
-      "id": "candidate-3",
-      "description": "Placeholder for candidate Jose Rizal",
-      "imageUrl": "https://images.unsplash.com/photo-1606239763510-ae5ef630b516?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWFuJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc2NDUyMDI4OXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "man professional"
-    },
-    {
       "id": "candidate-4",
       "description": "Placeholder for candidate Gabriela Silang",
       "imageUrl": "https://images.unsplash.com/photo-1600275669439-14e40452d20b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3b21hbiUyMHByb2Zlc3Npb25hbHxlbnwwfHx8fDE3NjQ1MjQwMDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "woman professional"
-    },
-    {
-      "id": "candidate-5",
-      "description": "Placeholder for candidate Andres Bonifacio",
-      "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYWxlJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc2NDU3MzM0Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "male professional"
-    },
-    {
-      "id": "candidate-6",
-      "description": "Placeholder for candidate Apolinario Mabini",
-      "imageUrl": "https://images.unsplash.com/photo-1557862921-37829c790f19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtYWxlJTIwcG9ydHJhaXQlMjBzbWlsaW5nfGVufDB8fHx8MTc2NDU3MzQxNnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "male portrait"
     },
     {
       "id": "candidate-7",
@@ -101,6 +71,66 @@
       "description": "Placeholder for candidate Tito Sotto",
       "imageUrl": "https://images.unsplash.com/photo-1762160767253-c050a10f9066?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYWxlJTIwY2VsZWJyaXR5fGVufDB8fHx8MTc2NDU5NTA0NXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "male celebrity"
+    },
+    {
+      "id": "candidate-17",
+      "description": "Placeholder for candidate Ramon 'Bong' Revilla Jr.",
+      "imageUrl": "https://images.unsplash.com/photo-1598801943872-d5299d319eda?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtYWxlJTIwcG9saXRpY2lhbnxlbnwwfHx8fDE3NjQ1OTUwNDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male politician"
+    },
+    {
+      "id": "candidate-18",
+      "description": "Placeholder for candidate Bonifacio Bosita",
+      "imageUrl": "https://images.unsplash.com/photo-1693035730007-fbc2c14c6814?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYWxlJTIwcG9saXRpY2lhbnxlbnwwfHx8fDE3NjQ1OTUwNDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male politician"
+    },
+    {
+      "id": "candidate-19",
+      "description": "Placeholder for candidate Arlene Brosas",
+      "imageUrl": "https://images.unsplash.com/photo-1629145185593-5339038e644f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmZW1hbGUlMjBwb2xpdGljaWFufGVufDB8fHx8MTc2NDU5NTA0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "female politician"
+    },
+    {
+      "id": "candidate-20",
+      "description": "Placeholder for candidate Roy Cabonegro",
+      "imageUrl": "https://images.unsplash.com/photo-1625502664816-4938b1d0d685?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYWxlJTIwcG9saXRpY2lhbnxlbnwwfHx8fDE3NjQ1OTUwNDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male politician"
+    },
+    {
+      "id": "candidate-21",
+      "description": "Placeholder for candidate Allen Capuyan",
+      "imageUrl": "https://images.unsplash.com/photo-1691026336764-f24456f76e03?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtYWxlJTIwcG9saXRpY2lhbnxlbnwwfHx8fDE3NjQ1OTUwNDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male politician"
+    },
+    {
+      "id": "candidate-22",
+      "description": "Placeholder for candidate Teodoro 'Teddy' Casiño",
+      "imageUrl": "https://images.unsplash.com/photo-1691026336764-f24456f76e03?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtYWxlJTIwcG9saXRpY2lhbnxlbnwwfHx8fDE3NjQ1OTUwNDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male politician"
+    },
+    {
+      "id": "candidate-23",
+      "description": "Placeholder for candidate Francisca 'France' Castro",
+      "imageUrl": "https://images.unsplash.com/photo-1620333198023-1fb846888d25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmZW1hbGUlMjBwb2xpdGljaWFufGVufDB8fHx8MTc2NDU5NTA0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "female politician"
+    },
+    {
+      "id": "candidate-24",
+      "description": "Placeholder for candidate Angelo De Alban",
+      "imageUrl": "https://images.unsplash.com/photo-1619494251609-2f73ce49fee8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtYWxlJTIwcG9saXRpY2lhbnxlbnwwfHx8fDE3NjQ1OTUwNDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male politician"
+    },
+    {
+      "id": "candidate-25",
+      "description": "Placeholder for candidate David D'Angelo",
+      "imageUrl": "https://images.unsplash.com/photo-1722368376725-fc1e7577fa1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYWxlJTIwcG9saXRpY2lhbnxlbnwwfHx8fDE3NjQ1OTUwNDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male politician"
+    },
+    {
+      "id": "candidate-26",
+      "description": "Placeholder for candidate Leodegario 'Leody' De Guzman",
+      "imageUrl": "https://images.unsplash.com/photo-1693035730007-fbc2c14c6814?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYWxlJTIwcG9saXRpY2lhbnxlbnwwfHx8fDE3NjQ1OTUwNDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male politician"
     }
   ]
 }

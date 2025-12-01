@@ -2,193 +2,6 @@ import type { Candidate } from './types';
 
 export const candidates: Candidate[] = [
   {
-    id: 'juan-dela-cruz',
-    fullName: 'Juan Dela Cruz',
-    positionSought: 'President',
-    politicalAffiliation: 'Partido ng Pagbabago',
-    imageUrlId: 'candidate-1',
-    education: [
-      {
-        degree: 'Bachelor of Science in Political Science',
-        institution: 'University of the Philippines Diliman',
-        year: '1990',
-        source: { label: 'UP Registrar', url: '#' },
-      },
-      {
-        degree: 'Juris Doctor',
-        institution: 'Ateneo de Manila University Law School',
-        year: '1994',
-        source: { label: 'Ateneo Law', url: '#' },
-      },
-    ],
-    careerTimeline: [
-      {
-        date: '2016-2022',
-        title: 'Senator of the Philippines',
-        description: 'Served a full term as a senator, focusing on economic and justice reform bills.',
-        isMilestone: true,
-        source: { label: 'Senate.gov.ph', url: '#' },
-      },
-      {
-        date: '2010-2016',
-        title: 'Congressman, 1st District of Quezon City',
-        description: 'Represented the 1st District of Quezon City for two terms.',
-        isMilestone: true,
-        source: { label: 'Congress.gov.ph', url: '#' },
-      },
-      {
-        date: '2001-2010',
-        title: 'Private Law Practice',
-        description: 'Worked as a human rights lawyer.',
-        isMilestone: false,
-        source: { label: 'IBP Records', url: '#' },
-      },
-    ],
-    platforms: [
-      {
-        title: 'Economic Revitalization',
-        description: 'Pledges to create 5 million jobs through infrastructure projects and support for small businesses.',
-        source: { label: 'Campaign Website', url: '#' },
-      },
-      {
-        title: 'Anti-Corruption Drive',
-        description: 'Proposes the creation of a special task force to investigate and prosecute corrupt officials.',
-        source: { label: 'TV Interview', url: '#' },
-      },
-    ],
-    controversies: [
-      {
-        title: 'Pork Barrel Fund Allegation',
-        summary: 'In 2013, was named in a report related to the misuse of Priority Development Assistance Fund (PDAF).',
-        outcome: 'The Ombudsman cleared him of all charges in 2015 due to lack of evidence.',
-        source: { label: 'COA Report 2014', url: '#' },
-      },
-    ],
-    promises: [
-        {
-            promise: 'Will pass a Freedom of Information Bill within the first 100 days.',
-            relatedActions: [
-                {
-                    description: 'As a senator, co-authored and voted for the FOI Bill in 2018, which did not pass the lower house.',
-                    source: { label: 'Senate Records 2018', url: '#' }
-                }
-            ]
-        }
-    ]
-  },
-  {
-    id: 'maria-clara',
-    fullName: 'Maria Clara',
-    positionSought: 'Vice President',
-    politicalAffiliation: 'Alyansa ng Mamamayan',
-    imageUrlId: 'candidate-2',
-    education: [
-      {
-        degree: 'Bachelor of Arts in Economics',
-        institution: 'De La Salle University',
-        year: '1995',
-        source: { label: 'DLSU Records', url: '#' },
-      },
-    ],
-    careerTimeline: [
-      {
-        date: '2019-Present',
-        title: 'Mayor of Cebu City',
-        description: 'Currently serving as the mayor of Cebu City, focusing on urban development and social services.',
-        isMilestone: true,
-        source: { label: 'Cebu City LGU', url: '#' },
-      },
-      {
-        date: '2012-2018',
-        title: 'Social Entrepreneur',
-        description: 'Founded a successful non-profit organization focused on providing micro-loans to women in rural areas.',
-        isMilestone: true,
-        source: { label: 'SEC Registration', url: '#' },
-      },
-    ],
-    platforms: [
-      {
-        title: 'Agricultural Modernization',
-        description: 'Aims to improve farmer incomes by investing in modern farming technologies and direct market access.',
-        source: { label: 'Agri Summit Speech', url: '#' },
-      },
-      {
-        title: 'Healthcare for All',
-        description: 'Wants to expand the national health insurance program to cover all Filipinos, including free check-ups.',
-        source: { label: 'Campaign Rally', url: '#' },
-      },
-    ],
-    controversies: [],
-    promises: [
-        {
-            promise: 'Increase the budget for state universities and colleges (SUCs).',
-            relatedActions: [
-                {
-                    description: 'As mayor, increased the city\'s scholarship fund for public university students by 50%.',
-                    source: { label: 'Cebu City Ordinance No. 123', url: '#' }
-                }
-            ]
-        }
-    ]
-  },
-   {
-    id: 'jose-rizal',
-    fullName: 'Jose "Pepe" Rizal',
-    positionSought: 'President',
-    politicalAffiliation: 'Independent',
-    imageUrlId: 'candidate-3',
-    education: [
-      {
-        degree: 'Bachelor of Science in Business Administration',
-        institution: 'University of Santo Tomas',
-        year: '1985',
-        source: { label: 'UST Registrar', url: '#' },
-      },
-    ],
-    careerTimeline: [
-      {
-        date: '2010-2016',
-        title: 'Governor of Laguna',
-        description: 'Served one term as Governor, focusing on environmental protection and tourism.',
-        isMilestone: true,
-        source: { label: 'Laguna Provincial Records', url: '#' },
-      },
-      {
-        date: '1990-2009',
-        title: 'CEO, Rizal Development Corporation',
-        description: 'Led a major real estate company with projects across Luzon.',
-        isMilestone: true,
-        source: { label: 'Company Website', url: '#' },
-      },
-    ],
-    platforms: [
-      {
-        title: 'Digital Transformation',
-        description: 'Advocates for a national digitalization program for government services to reduce red tape.',
-        source: { label: 'Tech Summit 2023', url: '#' },
-      },
-    ],
-    controversies: [
-         {
-        title: 'Land Use Controversy',
-        summary: 'His development company faced a lawsuit in 2005 regarding the conversion of agricultural land for a commercial project.',
-        outcome: 'The case was settled out of court, with the company providing relocation and livelihood programs for affected farmers.',
-        source: { label: 'Supreme Court G.R. No. 12345', url: '#' },
-      },
-    ],
-    promises: [
-        {
-            promise: 'Streamline business registration to 24 hours.',
-            relatedActions: [
-                {
-                    description: 'As governor, implemented a "Business One-Stop Shop" that reduced permit processing from 2 weeks to 3 days.',
-                    source: { label: 'Laguna Executive Order 2011-05', url: '#' }
-                }
-            ]
-        }
-    ]
-  },
-  {
     id: 'gabriela-silang',
     fullName: 'Gabriela Silang',
     positionSought: 'Senator',
@@ -233,112 +46,6 @@ export const candidates: Candidate[] = [
           {
             description: 'Filed a bill in 2019 to create a national domestic violence support system, which reached a second reading.',
             source: { label: 'House Bill No. 5432', url: '#' }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'andres-bonifacio',
-    fullName: 'Andres "Andy" Bonifacio',
-    positionSought: 'Vice President',
-    politicalAffiliation: 'Katipunan Party',
-    imageUrlId: 'candidate-5',
-    education: [
-      {
-        degree: 'Bachelor of Arts in Public Administration',
-        institution: 'National College of Public Administration and Governance',
-        year: '2000',
-        source: { label: 'NCPAG Records', url: '#' },
-      },
-    ],
-    careerTimeline: [
-      {
-        date: '2016-2022',
-        title: 'Congressman, Tondo District',
-        description: 'Authored bills related to labor rights and urban poor housing.',
-        isMilestone: true,
-        source: { label: 'Congress Archives', url: '#' },
-      },
-      {
-        date: '2005-2015',
-        title: 'Labor Union President',
-        description: 'Led a national union for factory workers, advocating for better wages and working conditions.',
-        isMilestone: true,
-        source: { label: 'DOLE Records', url: '#' },
-      },
-    ],
-    platforms: [
-      {
-        title: 'Workers\' Rights and Welfare',
-        description: 'Aims to end contractualization and increase the national minimum wage.',
-        source: { label: 'Labor Day Speech', url: '#' },
-      },
-    ],
-    controversies: [],
-    promises: [
-      {
-        promise: 'To certify a bill on security of tenure as urgent within the first 100 days.',
-        relatedActions: [
-          {
-            description: 'Consistently voted against measures seen as detrimental to labor interests during his time in Congress.',
-            source: { label: 'Congressional Voting Record', url: '#' }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'apolinario-mabini',
-    fullName: 'Apolinario "Pol" Mabini',
-    positionSought: 'President',
-    politicalAffiliation: 'Reporma Pilipinas',
-    imageUrlId: 'candidate-6',
-    education: [
-      {
-        degree: 'Bachelor of Laws',
-        institution: 'University of Santo Tomas',
-        year: '1988',
-        source: { label: 'UST Law', url: '#' },
-      },
-      {
-        degree: 'Master of Public Policy',
-        institution: 'Harvard Kennedy School',
-        year: '1992',
-        source: { label: 'Harvard Records', url: '#' },
-      },
-    ],
-    careerTimeline: [
-      {
-        date: '2013-2019',
-        title: 'Secretary of Foreign Affairs',
-        description: 'Served as the country\'s top diplomat, strengthening international relations.',
-        isMilestone: true,
-        source: { label: 'DFA Archives', url: '#' },
-      },
-      {
-        date: '2001-2010',
-        title: 'Legal Counsel',
-        description: 'Worked as chief legal counsel for a multi-national technology firm.',
-        isMilestone: false,
-        source: { label: 'Company Profile', url: '#' },
-      },
-    ],
-    platforms: [
-      {
-        title: 'Good Governance and Rule of Law',
-        description: 'Advocates for judicial reform and strengthening of democratic institutions.',
-        source: { label: 'IBP National Convention Speech', url: '#' },
-      },
-    ],
-    controversies: [],
-    promises: [
-      {
-        promise: 'To appoint a non-political, career professional to head the Department of Justice.',
-        relatedActions: [
-          {
-            description: 'As DFA secretary, implemented a merit-based system for ambassadorial appointments.',
-            source: { label: 'DFA Department Order', url: '#' }
           }
         ]
       }
@@ -458,6 +165,126 @@ export const candidates: Candidate[] = [
     positionSought: 'Senator',
     politicalAffiliation: 'Unknown',
     imageUrlId: 'candidate-16',
+    education: [],
+    careerTimeline: [],
+    platforms: [],
+    controversies: [],
+    promises: [],
+  },
+  {
+    id: 'ramon-revilla-jr',
+    fullName: 'Ramon "Bong" Revilla Jr.',
+    positionSought: 'Senator',
+    politicalAffiliation: 'Unknown',
+    imageUrlId: 'candidate-17',
+    education: [],
+    careerTimeline: [],
+    platforms: [],
+    controversies: [],
+    promises: [],
+  },
+  {
+    id: 'bonifacio-bosita',
+    fullName: 'Bonifacio Bosita',
+    positionSought: 'Senator',
+    politicalAffiliation: 'Unknown',
+    imageUrlId: 'candidate-18',
+    education: [],
+    careerTimeline: [],
+    platforms: [],
+    controversies: [],
+    promises: [],
+  },
+  {
+    id: 'arlene-brosas',
+    fullName: 'Arlene Brosas',
+    positionSought: 'Senator',
+    politicalAffiliation: 'Unknown',
+    imageUrlId: 'candidate-19',
+    education: [],
+    careerTimeline: [],
+    platforms: [],
+    controversies: [],
+    promises: [],
+  },
+  {
+    id: 'roy-cabonegro',
+    fullName: 'Roy Cabonegro',
+    positionSought: 'Senator',
+    politicalAffiliation: 'Unknown',
+    imageUrlId: 'candidate-20',
+    education: [],
+    careerTimeline: [],
+    platforms: [],
+    controversies: [],
+    promises: [],
+  },
+  {
+    id: 'allen-capuyan',
+    fullName: 'Allen Capuyan',
+    positionSought: 'Senator',
+    politicalAffiliation: 'Unknown',
+    imageUrlId: 'candidate-21',
+    education: [],
+    careerTimeline: [],
+    platforms: [],
+    controversies: [],
+    promises: [],
+  },
+  {
+    id: 'teddy-casino',
+    fullName: 'Teodoro "Teddy" Casiño',
+    positionSought: 'Senator',
+    politicalAffiliation: 'Unknown',
+    imageUrlId: 'candidate-22',
+    education: [],
+    careerTimeline: [],
+    platforms: [],
+    controversies: [],
+    promises: [],
+  },
+  {
+    id: 'francisca-castro',
+    fullName: 'Francisca "France" Castro',
+    positionSought: 'Senator',
+    politicalAffiliation: 'Unknown',
+    imageUrlId: 'candidate-23',
+    education: [],
+    careerTimeline: [],
+    platforms: [],
+    controversies: [],
+    promises: [],
+  },
+  {
+    id: 'angelo-de-alban',
+    fullName: 'Angelo De Alban',
+    positionSought: 'Senator',
+    politicalAffiliation: 'Unknown',
+    imageUrlId: 'candidate-24',
+    education: [],
+    careerTimeline: [],
+    platforms: [],
+    controversies: [],
+    promises: [],
+  },
+  {
+    id: 'david-dangelo',
+    fullName: "David D'Angelo",
+    positionSought: 'Senator',
+    politicalAffiliation: 'Unknown',
+    imageUrlId: 'candidate-25',
+    education: [],
+    careerTimeline: [],
+    platforms: [],
+    controversies: [],
+    promises: [],
+  },
+  {
+    id: 'leody-de-guzman',
+    fullName: 'Leodegario "Leody" De Guzman',
+    positionSought: 'Senator',
+    politicalAffiliation: 'Unknown',
+    imageUrlId: 'candidate-26',
     education: [],
     careerTimeline: [],
     platforms: [],
