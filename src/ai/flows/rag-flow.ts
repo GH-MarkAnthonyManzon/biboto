@@ -3,6 +3,7 @@ import { Document } from '@langchain/core/documents';
 import { HNSWLib } from '@langchain/community/vectorstores/hnswlib';
 import {
   GoogleGenerativeAIEmbeddings,
+  ChatGoogleGenerativeAI,
 } from '@langchain/google-genai';
 import {
   RunnablePassthrough,
@@ -12,6 +13,8 @@ import { formatDocumentsAsString } from 'langchain/util/document';
 import { StringOutputParser } from '@langchain/core/output_parsers';
 import {
   ChatPromptTemplate,
+  HumanMessagePromptTemplate,
+  SystemMessagePromptTemplate,
 } from '@langchain/core/prompts';
 import { CheerioWebBaseLoader } from 'langchain/document_loaders/web/cheerio';
 import { genkit } from 'genkit';
@@ -46,14 +49,17 @@ export const ragFlow = ai.defineFlow(
     );
     const retriever = vectorStore.asRetriever();
 
-    const prompt =
-      ChatPromptTemplate.fromTemplate(`Answer the following question based only on the provided context:
+    const prompt = ChatPromptTemplate.fromMessages([
+      SystemMessagePromptTemplate.fromTemplate(
+        `Answer the following question based only on the provided context:\n\n<context>\n{context}\n</context>`
+      ),
+      HumanMessagePromptTemplate.fromTemplate('Question: {input}'),
+    ]);
 
-<context>
-{context}
-</context>
-
-Question: {input}`);
+    const model = new ChatGoogleGenerativeAI({
+      apiKey: process.env.GEMINI_API_KEY,
+      modelName: 'gemini-1.5-flash-latest',
+    });
 
     const chain = RunnableSequence.from([
       {
@@ -61,15 +67,13 @@ Question: {input}`);
         input: new RunnablePassthrough(),
       },
       prompt,
-      ai.getModel('gemini-2.5-flash'),
+      model,
       new StringOutputParser(),
     ]);
 
-    // The result of this chain is just the string answer.
-    // To get the sources, we need to retrieve them separately.
     const [answer, context] = await Promise.all([
-        chain.invoke(question),
-        retriever.getRelevantDocuments(question)
+      chain.invoke(question),
+      retriever.getRelevantDocuments(question),
     ]);
 
     return {
