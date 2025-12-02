@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
-    serverComponentsExternalPackages: ['sharp', 'onnxruntime-node', 'hnswlib-node'],
+    serverComponentsExternalPackages: ['sharp', 'onnxruntime-node'],
   },
   images: {
     remotePatterns: [
