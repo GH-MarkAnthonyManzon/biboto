@@ -24,7 +24,7 @@ async function loadWebDocument(url: string) {
   return docs;
 }
 
-export async function ragFlow(question: string, sourceUrl: string) {
+export async function ragFlow(question: string, sourceUrl: string): Promise<{ answer: string; context: Document[] }> {
   const webDocs = await loadWebDocument(sourceUrl);
 
   if (!process.env.GEMINI_API_KEY) {
@@ -41,7 +41,7 @@ export async function ragFlow(question: string, sourceUrl: string) {
     SystemMessagePromptTemplate.fromTemplate(
       `Answer the following question based only on the provided context:\n\n<context>\n{context}\n</context>`
     ),
-    HumanMessagePromptTemplate.fromTemplate('Question: {input}'),
+    HumanMessagePromptTemplate.fromTemplate('Question: {question}'),
   ]);
 
   const model = new ChatGoogleGenerativeAI({
@@ -52,7 +52,7 @@ export async function ragFlow(question: string, sourceUrl: string) {
   const chain = RunnableSequence.from([
     {
       context: retriever.pipe(formatDocumentsAsString),
-      input: new RunnablePassthrough(),
+      question: new RunnablePassthrough(),
     },
     prompt,
     model,

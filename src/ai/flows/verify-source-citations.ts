@@ -12,6 +12,7 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 import { ragFlow } from './rag-flow';
+import { Document } from '@langchain/core/documents';
 
 const VerifySourceCitationsInputSchema = z.object({
   citationText: z
@@ -45,7 +46,7 @@ const verifySourceCitationsFlow = ai.defineFlow(
 
     if (result && result.context) {
       const sources = new Set(
-        result.context.map((doc: any) => doc.metadata.source)
+        result.context.map((doc: Document) => doc.metadata.source)
       );
       return { originalSources: Array.from(sources) };
     }
