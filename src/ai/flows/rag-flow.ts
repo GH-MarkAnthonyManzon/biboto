@@ -17,15 +17,6 @@ import {
   SystemMessagePromptTemplate,
 } from '@langchain/core/prompts';
 import { CheerioWebBaseLoader } from 'langchain/document_loaders/web/cheerio';
-import { z } from 'zod';
-import { ai } from '../genkit';
-
-const RagInputSchema = z.object({
-  question: z.string(),
-  sourceUrl: z.string().url(),
-});
-
-type RagInput = z.infer<typeof RagInputSchema>;
 
 async function loadWebDocument(url: string) {
   const loader = new CheerioWebBaseLoader(url);
@@ -33,51 +24,48 @@ async function loadWebDocument(url: string) {
   return docs;
 }
 
-export const ragFlow = ai.defineFlow(
-  {
-    name: 'ragFlow',
-    inputSchema: RagInputSchema,
-    outputSchema: z.any(),
-  },
-  async ({ question, sourceUrl }) => {
-    const webDocs = await loadWebDocument(sourceUrl);
+export async function ragFlow(question: string, sourceUrl: string) {
+  const webDocs = await loadWebDocument(sourceUrl);
 
-    const vectorStore = await HNSWLib.fromDocuments(
-      webDocs,
-      new GoogleGenerativeAIEmbeddings({ apiKey: process.env.GEMINI_API_KEY })
-    );
-    const retriever = vectorStore.asRetriever();
-
-    const prompt = ChatPromptTemplate.fromMessages([
-      SystemMessagePromptTemplate.fromTemplate(
-        `Answer the following question based only on the provided context:\n\n<context>\n{context}\n</context>`
-      ),
-      HumanMessagePromptTemplate.fromTemplate('Question: {input}'),
-    ]);
-
-    const model = new ChatGoogleGenerativeAI({
-      apiKey: process.env.GEMINI_API_KEY,
-      modelName: 'gemini-1.5-flash-latest',
-    });
-
-    const chain = RunnableSequence.from([
-      {
-        context: retriever.pipe(formatDocumentsAsString),
-        input: new RunnablePassthrough(),
-      },
-      prompt,
-      model,
-      new StringOutputParser(),
-    ]);
-
-    const [answer, context] = await Promise.all([
-      chain.invoke(question),
-      retriever.getRelevantDocuments(question),
-    ]);
-
-    return {
-      answer: answer,
-      context: context,
-    };
+  if (!process.env.GEMINI_API_KEY) {
+    throw new Error('GEMINI_API_KEY is not set in the environment.');
   }
-);
+  
+  const vectorStore = await HNSWLib.fromDocuments(
+    webDocs,
+    new GoogleGenerativeAIEmbeddings({ apiKey: process.env.GEMINI_API_KEY })
+  );
+  const retriever = vectorStore.asRetriever();
+
+  const prompt = ChatPromptTemplate.fromMessages([
+    SystemMessagePromptTemplate.fromTemplate(
+      `Answer the following question based only on the provided context:\n\n<context>\n{context}\n</context>`
+    ),
+    HumanMessagePromptTemplate.fromTemplate('Question: {input}'),
+  ]);
+
+  const model = new ChatGoogleGenerativeAI({
+    apiKey: process.env.GEMINI_API_KEY,
+    modelName: 'gemini-1.5-flash-latest',
+  });
+  
+  const chain = RunnableSequence.from([
+    {
+      context: retriever.pipe(formatDocumentsAsString),
+      input: new RunnablePassthrough(),
+    },
+    prompt,
+    model,
+    new StringOutputParser(),
+  ]);
+
+  const [answer, context] = await Promise.all([
+    chain.invoke(question),
+    retriever.getRelevantDocuments(question),
+  ]);
+
+  return {
+    answer: answer,
+    context: context,
+  };
+}
