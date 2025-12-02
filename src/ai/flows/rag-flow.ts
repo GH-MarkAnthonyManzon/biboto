@@ -58,29 +58,13 @@ export async function ragFlow(question: string): Promise<string[]> {
     new StringOutputParser(),
   ]);
 
-  const result = await chain.invoke(question);
-
-  // For now, we are not getting documents back.
-  // This is a placeholder for where we would extract source URLs.
-  // Since the result is just a string, we will return an empty array if it's not a URL.
-  const isUrl = (text: string) => {
-    try {
-      new URL(text);
-      return true;
-    } catch (_) {
-      return false;
-    }
-  }
-
-  if (result && isUrl(result)) {
-    return [result];
-  }
-
-  // A more robust implementation would be to return the source documents from the retriever.
-  // For now, let's return a hardcoded link if no URL is found in the direct response.
   const relevantDocs = await retriever.getRelevantDocuments(question);
+  
   if (relevantDocs && relevantDocs.length > 0) {
-    return relevantDocs.map(doc => doc.metadata.source).filter((source, index, self) => self.indexOf(source) === index);
+    // Return the source URLs from the metadata of the retrieved documents.
+    // Using a Set to ensure we only return unique URLs.
+    const sources = new Set(relevantDocs.map(doc => doc.metadata.source));
+    return Array.from(sources);
   }
 
   return [];
