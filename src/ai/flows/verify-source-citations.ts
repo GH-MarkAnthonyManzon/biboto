@@ -37,14 +37,11 @@ export type VerifySourceCitationsOutput = z.infer<
 export async function verifySourceCitations(
   input: VerifySourceCitationsInput
 ): Promise<VerifySourceCitationsOutput> {
-  const result = await ragFlow({
-    question: input.citationText,
-    sourceUrl: input.sourceUrl,
-  });
+  const result = await ragFlow(input);
 
   // Extract the source metadata from the retrieved documents.
   // Using a Set to ensure we only return unique URLs.
-  if (result.context) {
+  if (result && result.context) {
     const sources = new Set(
       result.context.map((doc: any) => doc.metadata.source)
     );

@@ -17,7 +17,6 @@ import {
   SystemMessagePromptTemplate,
 } from '@langchain/core/prompts';
 import { CheerioWebBaseLoader } from 'langchain/document_loaders/web/cheerio';
-import { genkit } from 'genkit';
 import { z } from 'zod';
 import { ai } from '../genkit';
 
