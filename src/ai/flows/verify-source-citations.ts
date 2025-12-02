@@ -9,14 +9,15 @@
  * - VerifySourceCitationsOutput - The return type for the verifySourceCitations function.
  */
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { ai } from '@/ai/genkit';
+import { z } from 'genkit';
 import { ragFlow } from './rag-flow';
 
 const VerifySourceCitationsInputSchema = z.object({
   citationText: z
     .string()
     .describe('The citation text to verify and find original sources for.'),
+  sourceUrl: z.string().url().describe('The URL of the source to verify against.'),
 });
 export type VerifySourceCitationsInput = z.infer<
   typeof VerifySourceCitationsInputSchema
@@ -25,7 +26,9 @@ export type VerifySourceCitationsInput = z.infer<
 const VerifySourceCitationsOutputSchema = z.object({
   originalSources: z
     .array(z.string().url())
-    .describe('A list of URL strings pointing to original sources found for the citation text.'),
+    .describe(
+      'A list of URL strings pointing to original sources found for the citation text.'
+    ),
 });
 export type VerifySourceCitationsOutput = z.infer<
   typeof VerifySourceCitationsOutputSchema
@@ -34,7 +37,19 @@ export type VerifySourceCitationsOutput = z.infer<
 export async function verifySourceCitations(
   input: VerifySourceCitationsInput
 ): Promise<VerifySourceCitationsOutput> {
-  const sources = await ragFlow(input.citationText)
-  
-  return { originalSources: sources };
+  const result = await ragFlow({
+    question: input.citationText,
+    sourceUrl: input.sourceUrl,
+  });
+
+  // Extract the source metadata from the retrieved documents.
+  // Using a Set to ensure we only return unique URLs.
+  if (result.context) {
+    const sources = new Set(
+      result.context.map((doc: any) => doc.metadata.source)
+    );
+    return { originalSources: Array.from(sources) };
+  }
+
+  return { originalSources: [] };
 }
