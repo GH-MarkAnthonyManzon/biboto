@@ -16,7 +16,8 @@ import {
   HumanMessagePromptTemplate,
   SystemMessagePromptTemplate,
 } from '@langchain/core/prompts';
-import { CheerioWebBaseLoader } from '@langchain/community/document_loaders/web/cheerio';
+// import { CheerioWebBaseLoader } from '@langchain/community/document_loaders/web/cheerio';
+import { chromium } from 'playwright';
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import { createHash } from 'crypto';
@@ -91,6 +92,7 @@ async function saveCachedDocument(url: string, docs: Document[]) {
   }
 }
 
+// Replace the loadWebDocument function (lines 49-75) with:
 async function loadWebDocument(url: string): Promise<Document[]> {
   try {
     // Try cache first
@@ -101,26 +103,64 @@ async function loadWebDocument(url: string): Promise<Document[]> {
     }
     
     console.log('Loading web document from:', url);
-    const loader = new CheerioWebBaseLoader(url);
-    const docs = await loader.load();
-    console.log('Loaded', docs.length, 'documents');
     
-    // Process and cache documents
-    const processedDocs = docs.map((doc: Document) => new Document({
-      pageContent: doc.pageContent,
-      metadata: {
-        ...doc.metadata,
-        source: url, // Explicitly set source URL
-      },
-    }));
+    // Launch browser
+    const browser = await chromium.launch({
+      headless: true,
+      args: ['--disable-dev-shm-usage', '--disable-gpu', '--no-sandbox'],
+    });
     
-    // Save to cache (don't await - fire and forget for speed)
-    saveCachedDocument(url, processedDocs).catch(() => {});
+    const page = await browser.newPage();
     
-    return processedDocs;
+    // Navigate and wait for content
+    await page.goto(url, { 
+      waitUntil: 'domcontentloaded',
+      timeout: 30000 
+    });
+    
+    // Extract text content
+    const content = await page.evaluate(() => {
+      // Remove script and style elements
+      const scripts = document.querySelectorAll('script, style');
+      scripts.forEach(el => el.remove());
+      
+      // Get main content (try common content containers first)
+      const selectors = [
+        'article',
+        'main',
+        '[role="main"]',
+        '.content',
+        '.article-content',
+        '.post-content',
+        'body'
+      ];
+      
+      for (const selector of selectors) {
+        const el = document.querySelector(selector);
+        if (el && el.textContent && el.textContent.length > 100) {
+          return el.textContent;
+        }
+      }
+      
+      return document.body.textContent || '';
+    });
+    
+    await browser.close();
+    
+    console.log('Loaded content length:', content.length);
+    
+    const docs = [new Document({
+      pageContent: content.trim(),
+      metadata: { source: url },
+    })];
+    
+    // Save to cache (fire and forget)
+    saveCachedDocument(url, docs).catch(() => {});
+    
+    return docs;
   } catch (error) {
     console.error('Error loading web document:', error);
-    throw error;
+    throw new Error(`Failed to load URL: ${url}. Please check if the URL is accessible.`);
   }
 }
 
@@ -228,9 +268,11 @@ export async function ragFlow(
     return {
       answer: answer,
       context: context,
-    };
+    };  
   } catch (error) {
     console.error('Error in ragFlow:', error);
     throw error;
   }
 }
+
+
