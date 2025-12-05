@@ -1,3 +1,5 @@
+//added 8:33pm 12/5/25 ADDED THE WHOLE CODE
+
 'use server';
 
 /**
@@ -31,6 +33,10 @@ const VerifySourceCitationsOutputSchema = z.object({
     .describe(
       'A list of URL strings where the citation text was actually found.'
     ),
+  contextSnippets: z
+    .array(z.string())
+    .optional()
+    .describe('Snippets of text showing where the citation was found in the source'),
 });
 
 export type VerifySourceCitationsOutput = z.infer<
@@ -132,15 +138,18 @@ export async function verifySourceCitations(
       if (matchedSources.length > 0) {
         const uniqueSources = Array.from(
           new Map(matchedSources.map(match => [match.source, match])).values()
-        ).map(match => match.source);
+        );
 
-        console.log('Verified sources:', uniqueSources);
-        return { originalSources: uniqueSources };
+        console.log('Verified sources:', uniqueSources.map(m => m.source));
+        return { 
+          originalSources: uniqueSources.map(m => m.source),
+          contextSnippets: uniqueSources.map(m => m.snippet)
+        };
       }
     }
 
     console.log('No matching content found, returning empty sources');
-    return { originalSources: [] };
+    return { originalSources: [], contextSnippets: [] };
   } catch (error) {
     console.error('Error in verifySourceCitations:', error);
     throw error;

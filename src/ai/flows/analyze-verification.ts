@@ -1,5 +1,6 @@
 //src/ai/flows/analyze-verification.ts
-//added 5:41 pm 12/5/25 ADDED THE WHOLE CODE
+//added 8:55 pm 12/5/25 ADDED THE WHOLE CODE
+
 
 'use server';
 
@@ -18,6 +19,8 @@ export async function analyzeVerificationResult(
   contextSnippets?: string[]
 ): Promise<VerificationAnalysis> {
   try {
+    console.log('Analyzing verification result...'); // Debug log
+    
     if (!process.env.GEMINI_API_KEY) {
       throw new Error('GEMINI_API_KEY is not set');
     }
@@ -30,34 +33,36 @@ export async function analyzeVerificationResult(
 
     const hasResults = foundSources.length > 0;
     
-    const prompt = `You are a helpful assistant for a Philippine civic transparency platform called "Alamin Natin".
+    const prompt = `You are a helpful AI assistant for "Alamin Natin", a Philippine civic transparency platform.
 
-A user just verified a citation against a source URL. Here's what happened:
+A user just verified whether a citation/text appears in a source URL.
 
 Citation Text: "${citationText.substring(0, 200)}${citationText.length > 200 ? '...' : ''}"
 Source URL: ${sourceUrl}
-Verification Result: ${hasResults ? 'FOUND - Content matches the source' : 'NOT FOUND - No matching content in source'}
+Result: ${hasResults ? 'FOUND - The citation was found in the source' : 'NOT FOUND - The citation was not found in the source'}
 ${contextSnippets && contextSnippets.length > 0 ? `\nMatching Context: "${contextSnippets[0].substring(0, 150)}..."` : ''}
 
-Provide a brief, friendly response with:
-1. A 1-2 sentence summary of what the verification found
-2. A helpful suggestion (1-2 sentences) on what the user should do next
+Provide a brief, helpful response with EXACTLY:
+1. ONE sentence (15-25 words) summarizing what the verification found
+2. ONE sentence (15-25 words) suggesting what the user should do next
 
 Guidelines:
-- Be concise and friendly
-- If FOUND: acknowledge the match and suggest checking the full source for complete context
-- If NOT FOUND: suggest possible reasons (paraphrasing, different source, or content might be elsewhere) and recommend cross-checking with other sources
-- Stay neutral and educational
-- Use Filipino context where appropriate (e.g., "Maganda na i-verify sa iba pang sources")
+- Be concise and direct
+- If FOUND: acknowledge the match, suggest checking full context
+- If NOT FOUND: suggest possible reasons (paraphrasing, wrong source, content may be elsewhere) and recommend cross-checking other sources
+- Be neutral and helpful
+- Use simple, clear language
 
-Format as JSON:
+Return ONLY valid JSON in this exact format:
 {
-  "summary": "Brief summary here",
-  "suggestion": "Helpful suggestion here"
+  "summary": "One sentence summary here",
+  "suggestion": "One sentence suggestion here"
 }`;
 
+    console.log('Sending request to Gemini API...'); // Debug log
     const response = await model.invoke(prompt);
     const content = response.content as string;
+    console.log('Received response from Gemini API'); // Debug log
     
     // Extract JSON
     let jsonText = content.trim();
