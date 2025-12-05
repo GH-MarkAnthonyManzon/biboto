@@ -1,5 +1,6 @@
-//addded 9:13 pm 12/5/25 ADDED THE WHOLE CODE
+//addded 9:47 pm 12/5/25 ADDED THE WHOLE CODE
 
+//src/app/actions.ts
 'use server';
 
 import { verifySourceCitations } from '@/ai/flows/verify-source-citations';
@@ -44,37 +45,34 @@ export async function verifyCitationAction(
   }
 
   try {
-    // Step 1: Fast verification (1-3 seconds with cache, 10-15 seconds without)
+    // FAST verification (1-8ms with cache)
     const verifyStart = Date.now();
     const result = await verifySourceCitations({
       citationText: validatedFields.data.citationText,
       sourceUrl: validatedFields.data.sourceUrl,
     });
     console.log(`⚡ Verification: ${Date.now() - verifyStart}ms`);
-    
-    // Step 2: Quick AI analysis (1-3 seconds) - run AFTER verification to show results faster
-    const analysisStart = Date.now();
-    const aiAnalysis = await analyzeVerificationResult(
-      validatedFields.data.citationText,
-      validatedFields.data.sourceUrl,
-      result.originalSources,
-      result.contextSnippets
-    );
-    console.log(`⚡ AI Analysis: ${Date.now() - analysisStart}ms`);
     console.log(`⚡ Total time: ${Date.now() - overallStart}ms`);
     
+    // Return immediately WITHOUT AI analysis
     if (result?.originalSources.length > 0) {
+      // Fire-and-forget AI analysis (don't wait)
+      analyzeVerificationResult(
+        validatedFields.data.citationText,
+        validatedFields.data.sourceUrl,
+        result.originalSources,
+        result.contextSnippets
+      ).catch(err => console.error('Background AI error:', err));
+      
       return {
         sources: result.originalSources,
         contextSnippets: result.contextSnippets,
-        aiAnalysis,
         message: 'Citation verified successfully.',
       };
     } else {
       return {
         sources: [],
         contextSnippets: [],
-        aiAnalysis,
         message: 'Citation not found in the provided source.',
       };
     }

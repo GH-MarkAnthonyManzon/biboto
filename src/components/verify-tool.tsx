@@ -1,8 +1,9 @@
-//added 8:54 pm 12/5/25 ADDED THE WHOLE CODE
+//added 9:48 pm 12/5/25 ADDED THE WHOLE CODE
 
+//src/components/verify-tool.tsx
 'use client';
 
-import { useActionState, useEffect } from 'react';
+import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { verifyCitationAction } from '@/app/actions';
 import {
@@ -25,7 +26,6 @@ import {
   CheckCircle,
   AlertCircle,
   ExternalLink,
-  Sparkles,
   Loader2,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -51,15 +51,9 @@ export function VerifyTool() {
     message: '', 
     sources: [], 
     contextSnippets: [],
-    aiAnalysis: undefined,
     error: '' 
   };
   const [state, dispatch] = useActionState(verifyCitationAction, initialState);
-
-  // Debug: Log state changes
-  useEffect(() => {
-    console.log('State updated:', state);
-  }, [state]);
 
   return (
     <Card className="w-full max-w-2xl">
@@ -147,20 +141,6 @@ export function VerifyTool() {
               ))}
             </div>
           </div>
-        )}
-
-        {state.aiAnalysis && (
-          <Alert className="mt-6 bg-primary/5 border-primary/20">
-            <Sparkles className="h-4 w-4 text-primary" />
-            <AlertTitle className="text-primary">AI Assistant</AlertTitle>
-            <AlertDescription className="space-y-3">
-              <p className="text-foreground">{state.aiAnalysis.summary}</p>
-              <p className="text-foreground font-medium">{state.aiAnalysis.suggestion}</p>
-              <p className="text-xs text-muted-foreground italic border-t pt-2">
-                {state.aiAnalysis.disclaimer}
-              </p>
-            </AlertDescription>
-          </Alert>
         )}
       </CardContent>
     </Card>
