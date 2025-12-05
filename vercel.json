@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "app/actions.ts": {
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  },
+  "buildCommand": "npm run build && npx playwright install --with-deps chromium"
+}

@@ -1,3 +1,7 @@
+// next.config.ts
+// updated 11:58 am 12/5/25 TO ADD PLAYWRIGHT SUPPORT
+
+
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
@@ -9,7 +13,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
-    serverComponentsExternalPackages: ['sharp', 'onnxruntime-node'],
+    serverComponentsExternalPackages: ['sharp', 'onnxruntime-node', 'playwright'], // Added playwright
   },
   images: {
     remotePatterns: [
@@ -32,6 +36,14 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  // Add webpack config for Playwright (optional but recommended)
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // Mark playwright as external for server-side rendering
+      config.externals = [...(config.externals || []), 'playwright'];
+    }
+    return config;
   },
 };
 
