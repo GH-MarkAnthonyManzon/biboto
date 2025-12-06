@@ -11,7 +11,7 @@ export function Footer() {
             verified with primary sources.
           </p>
           <p className="text-xs text-muted-foreground mt-2">
-            © {new Date().getFullYear()} Alamin Natin. All rights reserved.
+            © {new Date().getFullYear()} Biboto. All rights reserved.
           </p>
         </div>
       </div>

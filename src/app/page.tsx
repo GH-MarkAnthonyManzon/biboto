@@ -1,4 +1,5 @@
-//added 2:48pm 12/6/25 updated the whole file
+// src/app/page.tsx
+// Updated at 2:48pm 12/6/25 - Added Biboy Extension Button
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +12,7 @@ import {
 import { BookOpen, Users, Scale } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { BiboyDownloadButton } from "@/components/biboy-download-button";
 
 const literacyTopics = [
   {
@@ -68,12 +70,13 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline">
-                    Alamin Natin
+                    Biboto
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    Your non-partisan guide to civic transparency. We provide
-                    verified, fact-based information on candidates to improve
-                    voting literacy among Filipinos.
+                    BI lang pilipino<br />
+                    BO boto sa tapat at<br />
+                    TO too
+
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -83,6 +86,7 @@ export default function Home() {
                   <Button asChild variant="secondary" size="lg">
                     <Link href="#voting-literacy">Voting Literacy</Link>
                   </Button>
+                  <BiboyDownloadButton />
                 </div>
               </div>
             </div>
