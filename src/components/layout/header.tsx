@@ -4,12 +4,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  BookOpen,
   Home,
   Menu,
   Scale,
   Users
-
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -18,14 +16,13 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Logo } from "@/components/icons";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/candidates", label: "Candidates", icon: Users },
   { href: "/compare", label: "Compare", icon: Scale },
-
 ];
 
 export function Header() {
@@ -65,8 +62,15 @@ export function Header() {
           href="/"
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-          <Logo className="h-6 w-6 text-primary" />
-          <span className="font-headline">Alamin Natin</span>
+          <div className="relative h-8 w-8">
+            <Image
+              src="/BIBOTO-removebg-preview.png"
+              alt="Biboto Logo"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <span className="font-headline">Biboto</span>
         </Link>
         {navItems.map((item) => (
           <NavLink key={item.href} {...item} />
@@ -85,8 +89,15 @@ export function Header() {
               href="/"
               className="flex items-center gap-2 text-lg font-semibold"
             >
-              <Logo className="h-6 w-6 text-primary" />
-              <span className="sr-only">Alamin Natin</span>
+              <div className="relative h-8 w-8">
+                <Image
+                  src="/BIBOTO-removebg-preview.png"
+                  alt="Biboto Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span className="font-headline">Biboto</span>
             </Link>
             {navItems.map((item) => (
               <NavLink key={item.href} {...item} isMobile />
@@ -99,8 +110,15 @@ export function Header() {
           href="/"
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-          <Logo className="h-6 w-6 text-primary" />
-          <span className="font-headline">Alamin Natin</span>
+          <div className="relative h-8 w-8">
+            <Image
+              src="/BIBOTO-removebg-preview.png"
+              alt="Biboto Logo"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <span className="font-headline">Biboto</span>
         </Link>
       </div>
     </header>

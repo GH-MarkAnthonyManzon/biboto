@@ -73,10 +73,9 @@ export default function Home() {
                     Biboto
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    BI lang pilipino<br />
-                    BO boto sa tapat at<br />
-                    TO too
-
+                    Your non-partisan guide to civic transparency. We provide
+                    verified, fact-based information on candidates to improve
+                    voting literacy among Filipinos.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">

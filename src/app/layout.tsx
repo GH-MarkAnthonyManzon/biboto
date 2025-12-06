@@ -5,7 +5,7 @@ import {MainLayout} from '@/components/layout/main-layout';
 import {Toaster} from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Alamin Natin',
+  title: 'Biboto',
   description:
     'A non-partisan, fact-based civic transparency platform for Filipino voters.',
 };
